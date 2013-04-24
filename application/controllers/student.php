@@ -2,23 +2,24 @@
 
 class Student_Controller extends Base_Controller 
 {
+    // Displays application form
 	public function get_index()
 	{
 		return View::make('student.index');
 	}
-
+    
+    // Create a new application and displays it for the user or Redirects
 	public function post_create() 
 	{
-		// Validate student exists in student table
-		// Validate if user exists in report table		
 		$student_id = Input::get('student_id');
 		$term = Input::get('term');
 		$status = Input::get('status');
-
+        
+        // Validate student exists in student table
 		$validate_student =  Student::validate(array('id' => $student_id));
 
 		if ($validate_student->passes()) {
-			
+			// Validate if user exists in report table
 			$validate_report = Report::validate(array(
 				'student_id'  => $student_id,
 				'report_term' => $term,
@@ -40,14 +41,9 @@ class Student_Controller extends Base_Controller
 		} else {
 			return Redirect::to_route('/')->with_errors($validate_student)->with_input();
 		}
-		
-
-		// if ($new_report) {
-		// 	return Redirect::to_route('report', $new_report->student_id);
-		// }
-
+	
 	}
-
+    // Display a application report for a student
 	public function get_report($id)
 	{
 		$report = Student::report($id);

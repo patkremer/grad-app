@@ -8,7 +8,7 @@ class Student extends Eloquent
 		'id' => 'required|size:9|exists:student'
 	);
 
-	
+	// Validate if student exists
 	public static function validate($input) 
 	{
 		$messages = array(
@@ -19,7 +19,8 @@ class Student extends Eloquent
 
 		return Validator::make($input, static::$rules, $messages);
 	}
-
+    
+    // Retrieve a report for a single student
 	public static function report($id)
 	{
 		$student = DB::first('SELECT s.id AS id, 
@@ -43,7 +44,8 @@ class Student extends Eloquent
 							WHERE s.id = ?', array($id));
 		return $student;
 	}
-
+    
+    // Retrieve classes for a single student
 	public static function enrolled($id)
 	{
 		$classes = DB::query('SELECT  e.course_id AS id,

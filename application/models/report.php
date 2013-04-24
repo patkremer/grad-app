@@ -3,12 +3,15 @@
 class Report extends Eloquent 
 {
 	public static $table = 'app_report_status';
-	public static $rules = array(
+	
+    // Validation rules
+    public static $rules = array(
 			'report_term' 	=> 'required',
 			'student_id' 	=> 'required|unique:app_report_status',
 			'status_id'		=> 'required'
 	);
-
+    
+    // Validate if reports exists
 	public static function validate($input) 
 	{
 		$messages = array(
@@ -18,7 +21,8 @@ class Report extends Eloquent
 		);
 		return Validator::make($input, static::$rules, $messages);
 	}
-
+    
+    // Retrieve all of the current applicants
 	public static function students() 
 	{
 		$students = DB::query('SELECT s.id AS id, 
@@ -39,7 +43,8 @@ class Report extends Eloquent
 							WHERE report.report_term IS NOT NULL');
 		return $students;
 	}
-
+    
+    // Retrieve statuses not in use
 	public static function status($data)
 	{
 		$status = DB::query('SELECT s.id AS status_id,
@@ -49,7 +54,8 @@ class Report extends Eloquent
 								AND s.id != ?', array($data));
 		return $status;
 	}	
-
+    
+    // Update report status in database 
 	public static function review($status, $notes, $student_id)
 	{
 		$report	= DB::query('UPDATE grad_app.app_report_status 

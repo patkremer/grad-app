@@ -2,6 +2,7 @@
 
 class Admin_Controller extends Base_Controller 
 {
+    // Display list of applicants
 	public function get_index()
 	{
 		$students = Report::students();
@@ -12,7 +13,8 @@ class Admin_Controller extends Base_Controller
 		}
 		
 	}
-
+    
+    // Get selected report and display it
 	public function get_review($id) 
 	{
 		$report 	= Student::report($id);
@@ -23,10 +25,7 @@ class Admin_Controller extends Base_Controller
 			->with('classes', $classes)->with('statuses', $statuses);
 		} else {
 			return Redirect::to_route('admin')->with('error', 'The Student that you choose does not exist, please try again.');
-		}
-		
-		
-		
+		}	
 	}
 
 	// Update the status of a current report
