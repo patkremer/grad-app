@@ -17,7 +17,7 @@ class Admin_Controller extends Base_Controller
     // Get selected report and display it
 	public function get_review($id) 
 	{
-		$report 	= Student::report($id);
+		$report = Student::report($id);
 		if ($report) {
 			$classes 	= Student::enrolled($id);
 			$statuses 	= Report::status($report->status_id);

@@ -3,14 +3,12 @@
 class Report extends Eloquent 
 {
 	public static $table = 'app_report_status';
-	
     // Validation rules
     public static $rules = array(
 			'report_term' 	=> 'required',
 			'student_id' 	=> 'required|unique:app_report_status',
 			'status_id'		=> 'required'
 	);
-
 	public static $messages = array(
 			'unique' 		  => 'An application has already been submit, your report is below.',
 			'term_required'   => 'A term needs to be selected',
@@ -20,7 +18,6 @@ class Report extends Eloquent
     // Validate if reports exists
 	public static function validate($input) 
 	{
-		
 		return Validator::make($input, static::$rules, static::$messages);
 	}
 
@@ -73,8 +70,6 @@ class Report extends Eloquent
 			// Send email student has been rejected 
 			Report::email($student_id, 'Unfortunately, your graduation request has been rejected because you have not met all the standards. <br/><br/>To find out what you need to do the meet the requirements check see what the reviewer noted in your final report or contact the registrars office. <br/><br/>' . $url);
 		}
-
-
 		return $report;
 	}
 
@@ -92,6 +87,5 @@ class Report extends Eloquent
 		->send();	
 
 	}
-
 		
 }

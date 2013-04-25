@@ -11,13 +11,7 @@ Route::get('admin', array('as' => 'admin', 'uses' => 'admin@index'));
 Route::get('admin/review/(:num)', array('as' => 'admin_review', 'uses' => 'admin@review'));
 Route::put('admin/reports/update', array('uses' => 'admin@update'));
 
-Route::get('email', function(){
-	Message::to('swizzpirate@gmail.com')
-		->from('kremerp2@gmail')
-		->subject('Email test')
-		->body('This is the body of my email, how cool!')
-		->send();	
-});
+
 /*
 |--------------------------------------------------------------------------
 | Application 404 & 500 Error Handlers
