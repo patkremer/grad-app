@@ -72,7 +72,7 @@ class Report extends Eloquent
 	public static function email($id, $body) 
 	{
 		$student = DB::first('SELECT s.email, s.first_name, s.last_name
-							FROM grad_app.student s
+							FROM kremerp2_grad_app.student s
 							WHERE s.id = ?', array($id));
 
 		Message::to('grad@patrickkremer.me')
