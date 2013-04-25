@@ -7,17 +7,16 @@ class Student extends Eloquent
 	public static $rules = array(
 		'id' => 'required|size:9|exists:student'
 	);
+	public static $messages = array(
+		'required' => 'The Student ID field is required to submit an application',
+		'size'	   => 'The Student ID field must be exactly :size digits',
+		'exists'   => 'The Student ID given does not exists, please check your input.'		 
+	);
 
 	// Validate if student exists
 	public static function validate($input) 
 	{
-		$messages = array(
-		'required' => 'The Student ID field is required to submit an application',
-		'size'	   => 'The Student ID field must be exactly :size digits',
-		'exists'   => 'The Student ID given does not exists, please check your input.'		 
-		);
-
-		return Validator::make($input, static::$rules, $messages);
+		return Validator::make($input, static::$rules, static::$messages);
 	}
     
     // Retrieve a report for a single student

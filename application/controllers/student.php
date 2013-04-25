@@ -32,8 +32,12 @@ class Student_Controller extends Base_Controller
 					'report_term' => $term,
 					'status_id'   => $status
 				));
-				if ($new_report) return Redirect::to_route('report', $student_id)
-					->with('message', 'Your application was successfully submitted and is waiting to be reviewed');
+				if ($new_report) {
+					$url = HTML::link_to_route('report', 'Graduation Application Report', array($student_id));
+					Report::email($student_id, 'Your application was successfully submitted and is waiting to be reviewed. A link has been provided below for you to view the report at anytime. <br/><br/>' . $url);
+					return Redirect::to_route('report', $student_id)
+					->with('message', 'Your application was successfully submitted and is waiting to be reviewed.');
+				}
 			} else {
 				return Redirect::to_route('report', $student_id)->with_errors($validate_report);
 			}

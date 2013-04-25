@@ -19,6 +19,7 @@
 								</select>
 							</div>
 						</div>
+
 						<div class="control-group">
 							{{ Form::label('student_id', 'Student ID', array('class' => 'control-label')) }}
 							<div class="controls">
