@@ -31,13 +31,15 @@ class Report extends Eloquent
 							   	cap.gpa AS gpa,
 							   	cap.total_credits AS total_credits,
 							   	report.report_term AS report_term,
+							   	stat.id AS status_id,
 							   	stat.status_type AS status,
 							   	report.updated_at AS updated_at
 							FROM kremerp2_grad_app.student s
 							LEFT JOIN kremerp2_grad_app.capp_report cap ON s.id = cap.student_id
 							LEFT JOIN kremerp2_grad_app.app_report_status report ON s.id = report.student_id
 							LEFT JOIN kremerp2_grad_app.status stat ON report.status_id = stat.id
-							WHERE report.report_term IS NOT NULL');
+							WHERE report.report_term IS NOT NULL
+							ORDER BY stat.id ASC, report.updated_at DESC');
 		return $students;
 	}
 

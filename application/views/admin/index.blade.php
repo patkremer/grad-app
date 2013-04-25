@@ -26,8 +26,17 @@
 						        <td>{{ $student->email }}</td>
 						        <td>{{ $student->major }}</td>
 						        <td>{{ Str::limit($student->updated_at, 10, '') }}</td>
-						        <td><span class="label label-warning">{{ $student->status }}</span></td>
-						        <td>{{ HTML::link_to_route('admin_review','Review', $student->id, array('class' => 'btn btn-primary')) }}</td>                                       
+							@if($student->status_id == 1)
+							    <td><span class="label label-info">{{ $student->status }}</span></td>    					
+						        <td>{{ HTML::link_to_route('admin_review','Review', $student->id, array('class' => 'btn')) }}</td>
+							@elseif($student->status_id == 2)
+							    <td><span class="label label-success">{{ $student->status }}</span></td>
+							    <td>{{ HTML::link_to_route('admin_review','Review', $student->id, array('class' => 'btn disabled')) }}</td>  
+							@elseif($student->status_id == 3)
+								<td><span class="label label-important">{{ $student->status }}</span></td>
+								<td>{{ HTML::link_to_route('admin_review','Review', $student->id, array('class' => 'btn disabled')) }}</td>       
+							@endif
+                                 
 						    </tr>
 						@endforeach	
 						</tbody>

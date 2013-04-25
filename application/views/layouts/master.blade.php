@@ -3,9 +3,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>MSU-Denver Grad App</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Online graduation application prototype. Final project for a class.">
+	<meta name="content" content="">
+	<meta name="author" content="Patrick Kremer">
 	  {{ HTML::style('css/bootstrap.css') }}
 	  {{ HTML::style('css/style.css') }}
-
+	<!--[if lt IE 9]>
+      <script src="assets/js/html5shiv.js"></script>
+    <![endif]-->
 </head>
 <body>
 	<header>

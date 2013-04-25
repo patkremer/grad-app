@@ -4,10 +4,16 @@
 	
 	<div class="row-fluid">
 		<div class="span8"><h4>Graduation Application Report</h4>
-			<div class="label label-important">Status: {{ $student->status }}</div>
+			@if($student->status_id == 1)
+			    <div class="label label-info">{{ $student->status }}</div>
+			@elseif($student->status_id == 2)
+			   <div class="label label-success">{{ $student->status }}</div>
+			@elseif($student->status_id == 3)
+				<div class="label label-important">{{ $student->status }}</div>
+			@endif
 		</div>
 		<div class="span4"><h5>{{ $student->id . ' | ' . $student->first_name . ' ' . $student->last_name}}</h5>
-			<div class="label label-info">Updated: {{ $student->updated_at }}</div>
+			<div class="label label-inverse">Updated: {{ Str::limit($student->updated_at, 10, '')  }}</div>
 		</div>
 	</div>
     <hr />
