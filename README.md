@@ -2,14 +2,14 @@
 Final project for a Systems Anaylsis and Design class
 -------------------------------------------------------
 
-Built with Laravel and Bootstrap. 
+Built with Laravel and Bootstrap, Using a MySQL database. 
 
 ### This is a prototype demonstration for a final project at school. It's built under a few assumptions -
 
 - One assumption being that the student is logged into the the schools student management system. 
 - Two being that we have access to the proper databases.
 
-Since we obviously can't access all of the students information we created a simulated environment with existing students, courses, degress, etc. 
+Since we obviously can't access all of the students information we created a simulated database environment with existing students, courses, degress, etc. 
 
 Two actors are involved with application - The student and the administrator. The student can submit and view their application. The admin can review (accept or reject) all of the students applications. 
 
