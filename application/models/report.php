@@ -49,10 +49,10 @@ class Report extends Eloquent
 	public static function status($data)
 	{
 		$status = DB::query('SELECT s.id AS status_id,
-									s.status_type AS status
-								FROM grad_app.status s
-								WHERE s.id != 0 
-								AND s.id != ?', array($data));
+					    s.status_type AS status
+	                             FROM grad_app.status s
+				     WHERE s.id != 0 
+				     AND s.id != ?', array($data));
 		return $status;
 	}	
     
@@ -60,8 +60,8 @@ class Report extends Eloquent
 	public static function review($status, $notes, $student_id)
 	{
 		$report	= DB::query('UPDATE grad_app.app_report_status 
-							 SET status_id = ?, notes = ? 
-						     WHERE student_id = ?', array($status, $notes, $student_id));
+				     SET status_id = ?, notes = ? 
+				     WHERE student_id = ?', array($status, $notes, $student_id));
 
 		$url = HTML::link_to_route('report', 'Final Graduation Application Report', array($student_id));
 
@@ -78,8 +78,8 @@ class Report extends Eloquent
 	public static function email($id, $body) 
 	{
 		$student = DB::first('SELECT s.email, s.first_name, s.last_name
-							FROM grad_app.student s
-							WHERE s.id = ?', array($id));
+				      FROM grad_app.student s
+				      WHERE s.id = ?', array($id));
 
 		Message::to('grad@patrickkremer.me')
 		->from('kremerp2@gmail.com')
